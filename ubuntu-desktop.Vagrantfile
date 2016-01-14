@@ -67,7 +67,11 @@ Vagrant.configure(2) do |config|
   # documentation for more information about their specific syntax and use.
   config.vm.provision "shell", inline: <<-SHELL
     sudo apt-get update
-    sudo apt-get install -y ubuntu-desktop
+    # sudo apt-get install -y ubuntu-desktop
+    # Can't get --no-install-recommends to work
+    sudo apt-get install -y --no-install-recommends ubuntu-desktop
+    # Try this http://askubuntu.com/questions/42964/installing-ubuntu-desktop-without-all-the-bloat
+    sudo apt-get install -y gnome-session gnome-panel metacity gnome-terminal --no-install-recommends
     sudo reboot
   SHELL
 end
